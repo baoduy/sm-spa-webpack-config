@@ -6,7 +6,6 @@ const commonConfig = require('./common');
 module.exports = merge(commonConfig, {
   mode: 'production',
   entry: ['./index.jsx'],
-  //devtool: "source-map", // source map for testing only so disable it in PRD
   output: {
     filename: 'bundle.min.js',
     chunkFilename: '[name].js',
