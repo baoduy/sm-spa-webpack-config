@@ -1,16 +1,15 @@
 // production config
 const merge = require('webpack-merge');
 const { resolve } = require('path');
-const commonConfig = require('./common');
+const commonConfig = require('./prod');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 
 module.exports = merge(commonConfig, {
-  mode: 'production',
-  entry: ['./index.jsx'],
-  //devtool: "source-map", // source map for testing only so disable it in PRD
   output: {
     filename: 'bundle.min.js',
     chunkFilename: '[name].js',
-    path: resolve(__dirname, '../../dist'),
+    path: resolve(__dirname, '../../analysis'),
     publicPath: '/'
   },
   optimization: {
@@ -28,5 +27,5 @@ module.exports = merge(commonConfig, {
       }
     }
   },
-  plugins: []
+  plugins: [new BundleAnalyzerPlugin()]
 });

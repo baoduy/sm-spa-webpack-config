@@ -100,6 +100,6 @@ module.exports = {
     'react-test-renderer/shallow': true
   },
   performance: {
-    hints: false
+    hints: 'warning'
   }
 };
