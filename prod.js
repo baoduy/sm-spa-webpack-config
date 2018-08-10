@@ -7,7 +7,7 @@ module.exports = merge(commonConfig, {
   mode: 'production',
   entry: ['./index.jsx'],
   output: {
-    filename: 'bundle.min.js',
+    filename: 'bundle.js',
     chunkFilename: '[name].js',
     path: resolve(__dirname, '../../dist'),
     publicPath: '/'
@@ -15,14 +15,26 @@ module.exports = merge(commonConfig, {
   optimization: {
     splitChunks: {
       chunks: 'all',
-      name: true,
+      minChunks: 1,
+      name: false,
+      minSize: 307200, //300 kb
+      maxSize: 512000, //500 kb
+      hidePathInfo: true,
       automaticNameDelimiter: '.',
       cacheGroups: {
+        lodash: {
+          test: /[\\/]lodash[\\/]/,
+          name: 'lodash',
+          reuseExistingChunk: true
+        },
+        moment: {
+          test: /[\\/]moment[\\/]/,
+          name: 'moment'
+        },
         vendors: {
+          name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
-          reuseExistingChunk: true,
-          minChunks: 2
+          reuseExistingChunk: true
         }
       }
     }

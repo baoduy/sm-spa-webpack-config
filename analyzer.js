@@ -13,20 +13,5 @@ module.exports = merge(commonConfig, {
     path: resolve(__dirname, '../../analysis'),
     publicPath: '/'
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      name: true,
-      automaticNameDelimiter: '.',
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
-          reuseExistingChunk: true,
-          minChunks: 2
-        }
-      }
-    }
-  },
   plugins: [new BundleAnalyzerPlugin()]
 });
