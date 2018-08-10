@@ -22,6 +22,13 @@ module.exports = merge(commonConfig, {
       hidePathInfo: false,
       automaticNameDelimiter: '.',
       cacheGroups: {
+        materialui: {
+          test: /[\\/]@material-ui[\\/]/,
+          name: 'material-ui',
+          reuseExistingChunk: true,
+          enforce: true,
+          priority: 2
+        },
         lodash: {
           test: /[\\/]lodash[\\/]/,
           name: 'lodash',
