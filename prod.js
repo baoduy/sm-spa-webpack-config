@@ -22,26 +22,34 @@ module.exports = merge(commonConfig, {
       hidePathInfo: false,
       automaticNameDelimiter: '.',
       cacheGroups: {
+        style: {
+          test: /\.(css|sass|scss|less)$/,
+          name: 'style',
+          chunks: 'all',
+          enforce: true,
+          reuseExistingChunk: true,
+          priority: 5
+        },
         materialui: {
           test: /[\\/]@material-ui[\\/]/,
           name: 'material-ui',
           reuseExistingChunk: true,
           enforce: true,
-          priority: 2
+          priority: 4
         },
         lodash: {
           test: /[\\/]lodash[\\/]/,
           name: 'lodash',
           reuseExistingChunk: true,
           enforce: true,
-          priority: 2
+          priority: 3
         },
         moment: {
           test: /[\\/]moment[\\/]/,
           name: 'moment',
           reuseExistingChunk: true,
           enforce: true,
-          priority: 1
+          priority: 2
         },
         vendors: {
           name: 'vendor',
@@ -57,6 +65,5 @@ module.exports = merge(commonConfig, {
         }
       }
     }
-  },
-  plugins: []
+  }
 });

@@ -1,8 +1,12 @@
 // shared config (dev and prod)
 const { resolve } = require('path');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const devMode = process.env.NODE_ENV
+  ? process.env.NODE_ENV !== 'production'
+  : false;
 
 module.exports = {
   resolve: {
@@ -21,7 +25,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -36,18 +40,10 @@ module.exports = {
           {
             test: /\.less$/,
             use: [
-              {
-                loader: 'style-loader' // creates style nodes from JS strings
-              },
-              {
-                loader: 'css-loader' // translates CSS into CommonJS
-              },
-              {
-                loader: 'postcss-loader'
-              },
-              {
-                loader: 'less-loader' // compiles Less to CSS
-              }
+              devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+              'css-loader', // translates CSS into CommonJS
+              'postcss-loader',
+              'less-loader' // compiles Less to CSS
             ]
           }
         ]
@@ -83,6 +79,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    }),
     new HtmlWebpackPlugin({
       template: 'index.html.ejs',
       favicon: 'favicon.ico'
@@ -90,7 +89,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
       ReactDOM: 'react-dom'
-    })
+    }),
+    new OptimizeCSSAssetsPlugin({})
   ],
   externals: {
     React: 'react',
