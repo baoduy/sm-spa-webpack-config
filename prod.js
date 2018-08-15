@@ -3,7 +3,6 @@ const merge = require('webpack-merge');
 const { resolve } = require('path');
 const commonConfig = require('./common');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
@@ -15,8 +14,15 @@ module.exports = merge(commonConfig, {
     publicPath: '/'
   },
   optimization: {
+    runtimeChunk: false,
     minimize: true,
-    minimizer: [new UglifyJsPlugin(), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false
+      })
+    ],
     splitChunks: {
       chunks: 'all',
       minChunks: 1,
@@ -24,22 +30,29 @@ module.exports = merge(commonConfig, {
       // minSize: 307200, //300 kb
       // maxSize: 512000, //500 kb
       hidePathInfo: false,
-      automaticNameDelimiter: '.',
+      automaticNameDelimiter: '-',
       cacheGroups: {
         style: {
           test: /\.(css|sass|scss|less)$/,
           name: 'style',
-          chunks: 'all',
+          chunks: 'async',
           enforce: true,
           reuseExistingChunk: true,
-          priority: 5
+          priority: 100
         },
         materialUi: {
           test: /[\\/]@material-ui[\\/]/,
           name: 'material-ui',
           reuseExistingChunk: true,
           enforce: true,
-          priority: 4
+          priority: 99
+        },
+        react: {
+          test: /[\\/]react/,
+          name: 'react',
+          reuseExistingChunk: true,
+          enforce: true,
+          priority: 98
         },
         lodash: {
           test: /[\\/]lodash[\\/]/,
@@ -62,11 +75,7 @@ module.exports = merge(commonConfig, {
           enforce: true,
           priority: 0
         },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        }
+        default: false
       }
     }
   }
