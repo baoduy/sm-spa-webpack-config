@@ -2,6 +2,8 @@
 const merge = require('webpack-merge');
 const { resolve } = require('path');
 const commonConfig = require('./common');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
@@ -13,6 +15,8 @@ module.exports = merge(commonConfig, {
     publicPath: '/'
   },
   optimization: {
+    minimize: true,
+    minimizer: [new UglifyJsPlugin(), new OptimizeCSSAssetsPlugin({})],
     splitChunks: {
       chunks: 'all',
       minChunks: 1,
@@ -30,7 +34,7 @@ module.exports = merge(commonConfig, {
           reuseExistingChunk: true,
           priority: 5
         },
-        materialui: {
+        materialUi: {
           test: /[\\/]@material-ui[\\/]/,
           name: 'material-ui',
           reuseExistingChunk: true,

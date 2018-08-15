@@ -3,7 +3,7 @@ const { resolve } = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
 const devMode = process.env.NODE_ENV
   ? process.env.NODE_ENV !== 'production'
   : false;
@@ -89,8 +89,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
       ReactDOM: 'react-dom'
-    }),
-    new OptimizeCSSAssetsPlugin({})
+    })
   ],
   externals: {
     React: 'react',
