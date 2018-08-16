@@ -6,8 +6,5 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 
 module.exports = merge(commonConfig, {
-  output: {
-    path: resolve(__dirname, '../../analysis')
-  },
   plugins: [new BundleAnalyzerPlugin()]
 });
