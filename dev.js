@@ -3,11 +3,12 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const commonConfig = require('./common');
 
+process.env.NODE_ENV = 'development';
 const port = 8080;
 const url = `http://localhost:${port}`;
 
 module.exports = merge(commonConfig, {
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   entry: [
     'react-hot-loader/patch', // activate HMR for React
     `webpack-dev-server/client?${url}`, // bundle the client for webpack-dev-server and connect to the provided endpoint

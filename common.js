@@ -1,12 +1,10 @@
 // shared config (dev and prod)
 const { resolve } = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-const devMode = process.env.NODE_ENV
-  ? process.env.NODE_ENV !== 'production'
-  : false;
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   resolve: {
@@ -25,7 +23,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          devMode ? 'style-loader' : ExtractCssChunks.loader,
           {
             loader: 'css-loader',
             options: {
@@ -40,7 +38,7 @@ module.exports = {
           {
             test: /\.less$/,
             use: [
-              devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+              devMode ? 'style-loader' : ExtractCssChunks.loader,
               'css-loader', // translates CSS into CommonJS
               'postcss-loader',
               'less-loader' // compiles Less to CSS
@@ -79,8 +77,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].css'
+    new ExtractCssChunks({
+      hot: devMode
     }),
     new HtmlWebpackPlugin({
       template: 'index.html.ejs',

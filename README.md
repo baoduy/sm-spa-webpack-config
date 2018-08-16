@@ -47,3 +47,34 @@ scripts:{
 ```
 
 The Webpack Bundle Analyzer is started at http://127.0.0.1:8888
+
+### 5. Dependences
+
+```json
+ "devDependencies": {
+    "babel-loader": "latest",
+    "babel-plugin-lodash":  "latest",
+    "babel-plugin-module-resolver":  "latest",
+    "bundlesize":  "latest",
+    "copy-webpack-plugin":  "latest",
+    "css-loader":  "latest",
+    "cssnano":  "latest",
+    "extract-css-chunks-webpack-plugin": "latest",
+    "file-loader":  "latest",
+    "html-webpack-plugin": "latest",
+    "img-loader": "latest",
+    "less-loader": "latest",
+    "npm-run-all":  "latest",
+    "postcss-loader": "latest",
+    "react-hot-loader":  "latest",
+    "rimraf": "latest",
+    "style-loader": "latest",
+    "url-loader": "latest",
+    "webpack": "latest",
+    "webpack-cli":"latest",
+    "webpack-bundle-analyzer": "latest",
+    "webpack-dev-middleware":  "latest",
+    "webpack-dev-server": "latest",
+    "webpack-merge": "latest",
+  },
+```

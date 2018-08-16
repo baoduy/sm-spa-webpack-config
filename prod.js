@@ -2,10 +2,11 @@
 const merge = require('webpack-merge');
 const { resolve } = require('path');
 const commonConfig = require('./common');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+process.env.NODE_ENV = 'production';
 
 module.exports = merge(commonConfig, {
-  mode: 'production',
+  mode: process.env.NODE_ENV,
   entry: ['./index.jsx'],
   output: {
     filename: 'bundle.js',
@@ -14,15 +15,7 @@ module.exports = merge(commonConfig, {
     publicPath: '/'
   },
   optimization: {
-    runtimeChunk: false,
     minimize: true,
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: false
-      })
-    ],
     splitChunks: {
       chunks: 'all',
       minChunks: 1,
@@ -32,12 +25,11 @@ module.exports = merge(commonConfig, {
       hidePathInfo: false,
       automaticNameDelimiter: '-',
       cacheGroups: {
-        style: {
-          test: /\.(css|sass|scss|less)$/,
-          name: 'style',
-          chunks: 'async',
-          enforce: true,
+        moment: {
+          test: /[\\/]moment[\\/]/,
+          name: 'moment',
           reuseExistingChunk: true,
+          enforce: true,
           priority: 100
         },
         materialUi: {
@@ -47,27 +39,20 @@ module.exports = merge(commonConfig, {
           enforce: true,
           priority: 99
         },
-        react: {
-          test: /[\\/]react/,
-          name: 'react',
-          reuseExistingChunk: true,
-          enforce: true,
-          priority: 98
-        },
-        lodash: {
-          test: /[\\/]lodash[\\/]/,
-          name: 'lodash',
-          reuseExistingChunk: true,
-          enforce: true,
-          priority: 3
-        },
-        moment: {
-          test: /[\\/]moment[\\/]/,
-          name: 'moment',
-          reuseExistingChunk: true,
-          enforce: true,
-          priority: 2
-        },
+        // react: {
+        //   test: /[\\/]react/,
+        //   name: 'react',
+        //   reuseExistingChunk: true,
+        //   enforce: true,
+        //   priority: 98
+        // },
+        // lodash: {
+        //   test: /[\\/]lodash[\\/]/,
+        //   name: 'lodash',
+        //   reuseExistingChunk: true,
+        //   enforce: true,
+        //   priority: 97
+        // },
         vendors: {
           name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
@@ -78,5 +63,6 @@ module.exports = merge(commonConfig, {
         default: false
       }
     }
-  }
+  },
+  plugins: []
 });
