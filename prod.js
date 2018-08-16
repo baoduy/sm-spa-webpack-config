@@ -39,13 +39,13 @@ module.exports = merge(commonConfig, {
           enforce: true,
           priority: 99
         },
-        // react: {
-        //   test: /[\\/]react/,
-        //   name: 'react',
-        //   reuseExistingChunk: true,
-        //   enforce: true,
-        //   priority: 98
-        // },
+        react: {
+          test: /[\\/]react|redux/,
+          name: 'react',
+          reuseExistingChunk: true,
+          enforce: true,
+          priority: 98
+        },
         // lodash: {
         //   test: /[\\/]lodash[\\/]/,
         //   name: 'lodash',
