@@ -4,7 +4,7 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-const devMode = process.env.NODE_ENV !== 'production';
+const devMode = process.env.NODE_ENV === 'development';
 
 module.exports = {
   resolve: {
