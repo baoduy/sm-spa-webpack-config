@@ -2,6 +2,7 @@
 const merge = require('webpack-merge');
 const { resolve } = require('path');
 const commonConfig = require('./common');
+const SizePlugin = require('size-plugin');
 
 process.env.NODE_ENV = 'production';
 
@@ -64,5 +65,5 @@ module.exports = merge(commonConfig, {
       }
     }
   },
-  plugins: []
+  plugins: [new SizePlugin()]
 });
