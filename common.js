@@ -3,6 +3,7 @@ const { resolve } = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const CleanCSSPlugin = require('less-plugin-clean-css');
 
 const devMode = process.env.NODE_ENV === 'development';
 
@@ -34,15 +35,18 @@ module.exports = {
         ]
       },
       {
-        rules: [
+        test: /\.less$/,
+        use: [
+          devMode ? 'style-loader' : ExtractCssChunks.loader,
           {
-            test: /\.less$/,
-            use: [
-              devMode ? 'style-loader' : ExtractCssChunks.loader,
-              'css-loader', // translates CSS into CommonJS
-              'postcss-loader',
-              'less-loader' // compiles Less to CSS
-            ]
+            loader: 'css-loader',
+            options: {
+              sourceMap: false,
+              modules: true
+            }
+          },
+          {
+            loader: 'less-loader'
           }
         ]
       },
@@ -78,7 +82,9 @@ module.exports = {
   },
   plugins: [
     new ExtractCssChunks({
-      hot: devMode
+      hot: devMode,
+      filename: '[name].css',
+      chunkFilename: '[name].css'
     }),
     new HtmlWebpackPlugin({
       template: 'index.html.ejs',

@@ -19,13 +19,20 @@ module.exports = merge(commonConfig, {
     minimize: true,
     splitChunks: {
       chunks: 'all',
-      minChunks: 1,
+      //minChunks: 1,
       name: true,
       // minSize: 307200, //300 kb
       // maxSize: 512000, //500 kb
       hidePathInfo: false,
       automaticNameDelimiter: '-',
       cacheGroups: {
+        css: {
+          test: /\.(css|scss|less)$/i,
+          name: 'style',
+          reuseExistingChunk: true,
+          enforce: true,
+          priority: 100
+        },
         moment: {
           test: /[\\/]moment[\\/]/,
           name: 'moment',
