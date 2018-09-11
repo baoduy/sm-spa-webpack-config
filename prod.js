@@ -31,7 +31,7 @@ module.exports = merge(commonConfig, {
           name: 'style',
           reuseExistingChunk: true,
           enforce: true,
-          priority: 100
+          priority: 101
         },
         moment: {
           test: /[\\/]moment[\\/]/,

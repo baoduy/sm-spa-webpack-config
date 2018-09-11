@@ -40,14 +40,25 @@ module.exports = {
           devMode ? 'style-loader' : ExtractCssChunks.loader,
           {
             loader: 'css-loader',
-            options: {
-              sourceMap: false,
-              modules: true
-            }
+            options: { url: false, sourceMap: false }
           },
+          'postcss-loader',
           {
-            loader: 'less-loader'
+            loader: 'less-loader',
+            options: {
+              relativeUrls: false,
+              sourceMap: false
+            }
           }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          devMode ? 'style-loader' : ExtractCssChunks.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
         ]
       },
       {
@@ -82,9 +93,7 @@ module.exports = {
   },
   plugins: [
     new ExtractCssChunks({
-      hot: devMode,
-      filename: '[name].css',
-      chunkFilename: '[name].css'
+      hot: devMode
     }),
     new HtmlWebpackPlugin({
       template: 'index.html.ejs',
