@@ -3,7 +3,6 @@ const { resolve } = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const CleanCSSPlugin = require('less-plugin-clean-css');
 
 const devMode = process.env.NODE_ENV === 'development';
 
