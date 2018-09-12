@@ -8,7 +8,7 @@ const devMode = process.env.NODE_ENV === 'development';
 
 module.exports = {
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   context: resolve(__dirname, '../../src'),
   module: {
@@ -19,6 +19,10 @@ module.exports = {
           loader: 'babel-loader'
         },
         exclude: /node_modules/
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader'
       },
       {
         test: /\.css$/,
