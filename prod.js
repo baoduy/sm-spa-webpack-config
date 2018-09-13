@@ -48,7 +48,7 @@ module.exports = merge(commonConfig, {
         //   priority: 99
         // },
         react: {
-          test: /[\\/](react|redux|@material-ui)/,
+          test: /[\\/](react|@material-ui)/,
           name: 'react',
           reuseExistingChunk: true,
           //enforce: true,
