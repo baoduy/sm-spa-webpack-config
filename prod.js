@@ -15,16 +15,6 @@ module.exports = merge(commonConfig, {
     path: resolve(__dirname, '../../dist'),
     publicPath: '/'
   },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx|ts|tsx)$/,
-        enforce: 'pre',
-        //exclude: /(node_modules|bower_components|\.spec\.js)/,
-        use: ['webpack-strip-block']
-      }
-    ]
-  },
   optimization: {
     minimize: true,
     splitChunks: {

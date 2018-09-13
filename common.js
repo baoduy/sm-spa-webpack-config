@@ -14,6 +14,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        //exclude: /node_modules/,
+        use: [
+          {
+            loader: 'webpack-remove-block-loader',
+            options: {
+              active: !devMode,
+              start: '/*',
+              end: '*/',
+              blocks: ['PrdDeletion'] //The tag will be /* PrdDeletion:start */ and /* PrdDeletion:end */
+            }
+          }
+        ]
+      },
+      {
         test: /\.(js|jsx)$/,
         use: {
           loader: 'babel-loader'
