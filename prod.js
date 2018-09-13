@@ -73,7 +73,7 @@ module.exports = merge(commonConfig, {
           minChunks: 1,
           reuseExistingChunk: true,
           //enforce: true,
-          priority: -Infinity
+          priority: 0
         }
       }
     }
