@@ -52,7 +52,7 @@ module.exports = merge(commonConfig(mode), {
           reuseExistingChunk: true,
           //enforce: true,
           priority: 98
-        },
+        }
         // lodash: {
         //   test: /[\\/]lodash[\\/]/,
         //   name: 'lodash',
@@ -67,13 +67,14 @@ module.exports = merge(commonConfig(mode), {
         //   enforce: true,
         //   priority: 1
         // },
-        default: {
-          name: 'manifest',
-          minChunks: 1,
-          reuseExistingChunk: true,
-          //enforce: true,
-          priority: 0
-        }
+        //This will mege all dynamic module to 1 file.
+        // default: {
+        //   name: 'manifest',
+        //   minChunks: 1,
+        //   reuseExistingChunk: true,
+        //   //enforce: true,
+        //   priority: 0
+        // }
       }
     }
   },
