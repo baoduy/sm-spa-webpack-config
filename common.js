@@ -14,12 +14,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx|ts|tsx)$/,
-        enforce: 'pre',
-        //exclude: /(node_modules|bower_components|\.spec\.js)/,
-        use: ['webpack-strip-block']
-      },
-      {
         test: /\.(js|jsx)$/,
         use: {
           loader: 'babel-loader'
