@@ -23,7 +23,7 @@ module.exports = {
               active: !devMode,
               start: '/*',
               end: '*/',
-              blocks: ['PrdDeletion'] //The tag will be /* PrdDeletion:start */ and /* PrdDeletion:end */
+              blocks: ['ProdDeletion'] //The tag will be /* ProdDeletion:start */ and /* ProdDeletion:end */
             }
           }
         ]

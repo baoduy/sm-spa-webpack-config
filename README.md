@@ -6,6 +6,16 @@ The sub-module for webpack config for SPA app.
 
 Add this repo as the sub-module of your repo with the module path is **configs\webpack**
 
+## Remove code block in PRD
+
+The `webpack-remove-block-loader` had been use with custom tag to remove the code block when bundle for PRD use.
+
+```javascript
+/* PrdDeletion:start */
+console.log(`base URL is ${base}`);
+/* PrdDeletion:end */
+```
+
 ## Config files
 
 ### 1. common.js
@@ -72,6 +82,7 @@ The Webpack Bundle Analyzer is started at http://127.0.0.1:8888
     "url-loader": "latest",
     "webpack": "latest",
     "webpack-cli":"latest",
+    "webpack-remove-block-loader":"latest",
     "webpack-bundle-analyzer": "latest",
     "webpack-dev-middleware":  "latest",
     "webpack-dev-server": "latest",
