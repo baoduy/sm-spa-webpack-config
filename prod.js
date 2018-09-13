@@ -38,7 +38,7 @@ module.exports = merge(commonConfig(mode), {
           reuseExistingChunk: true,
           //enforce: true,
           priority: 100
-        },
+        }
         // materialUi: {
         //   test: /[\\/]@material-ui[\\/]/,
         //   name: 'material-ui',
@@ -46,13 +46,13 @@ module.exports = merge(commonConfig(mode), {
         //   enforce: true,
         //   priority: 99
         // },
-        react: {
-          test: /[\\/](react|@material-ui)/,
-          name: 'react',
-          reuseExistingChunk: true,
-          //enforce: true,
-          priority: 98
-        }
+        // react: {
+        //   test: /[\\/](react|@material-ui)/,
+        //   name: 'react',
+        //   reuseExistingChunk: true,
+        //   //enforce: true,
+        //   priority: 98
+        // }
         // lodash: {
         //   test: /[\\/]lodash[\\/]/,
         //   name: 'lodash',
