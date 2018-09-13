@@ -19,7 +19,7 @@ module.exports = merge(commonConfig, {
     minimize: true,
     splitChunks: {
       chunks: 'all',
-      //minChunks: 1,
+      minChunks: 1,
       name: true,
       // minSize: 307200, //300 kb
       // maxSize: 512000, //500 kb
@@ -37,21 +37,21 @@ module.exports = merge(commonConfig, {
           test: /[\\/]moment[\\/]/,
           name: 'moment',
           reuseExistingChunk: true,
-          enforce: true,
+          //enforce: true,
           priority: 100
         },
-        materialUi: {
-          test: /[\\/]@material-ui[\\/]/,
-          name: 'material-ui',
-          reuseExistingChunk: true,
-          enforce: true,
-          priority: 99
-        },
+        // materialUi: {
+        //   test: /[\\/]@material-ui[\\/]/,
+        //   name: 'material-ui',
+        //   reuseExistingChunk: true,
+        //   enforce: true,
+        //   priority: 99
+        // },
         react: {
-          test: /[\\/]react|redux/,
+          test: /[\\/](react|redux|@material-ui)/,
           name: 'react',
           reuseExistingChunk: true,
-          enforce: true,
+          //enforce: true,
           priority: 98
         },
         // lodash: {
@@ -61,14 +61,20 @@ module.exports = merge(commonConfig, {
         //   enforce: true,
         //   priority: 97
         // },
-        vendors: {
-          name: 'vendor',
-          test: /[\\/]node_modules[\\/]/,
+        // vendors: {
+        //   name: 'vendor',
+        //   test: /[\\/]node_modules[\\/]/,
+        //   reuseExistingChunk: true,
+        //   enforce: true,
+        //   priority: 1
+        // },
+        default: {
+          name: 'manifest',
+          minChunks: 1,
           reuseExistingChunk: true,
-          enforce: true,
-          priority: 0
-        },
-        default: false
+          //enforce: true,
+          priority: -Infinity
+        }
       }
     }
   },
