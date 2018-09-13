@@ -4,10 +4,9 @@ const { resolve } = require('path');
 const commonConfig = require('./common');
 const SizePlugin = require('size-plugin');
 
-process.env.NODE_ENV = 'production';
-
-module.exports = merge(commonConfig, {
-  mode: process.env.NODE_ENV,
+const mode = 'production';
+module.exports = merge(commonConfig(mode), {
+  mode,
   entry: ['./index.jsx'],
   output: {
     filename: 'bundle.js',

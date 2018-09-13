@@ -11,9 +11,9 @@ Add this repo as the sub-module of your repo with the module path is **configs\w
 The `webpack-remove-block-loader` had been use with custom tag to remove the code block when bundle for PRD use.
 
 ```javascript
-/* PrdDeletion:start */
+/* devblock:start */
 console.log(`base URL is ${base}`);
-/* PrdDeletion:end */
+/* devblock:end */
 ```
 
 ## Config files
