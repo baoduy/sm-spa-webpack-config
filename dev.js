@@ -6,6 +6,7 @@ const commonConfig = require('./common');
 const port = 8080;
 const url = `http://localhost:${port}`;
 const mode = 'development';
+process.env.NODE_ENV = mode;
 
 module.exports = merge(commonConfig(mode), {
   mode,

@@ -5,6 +5,8 @@ const commonConfig = require('./common');
 const SizePlugin = require('size-plugin');
 
 const mode = 'production';
+process.env.NODE_ENV = mode;
+
 module.exports = merge(commonConfig(mode), {
   mode,
   entry: ['./index.jsx'],
